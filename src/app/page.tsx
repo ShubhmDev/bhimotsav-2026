@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import EventCard from '@/components/EventCard'
+import HeroSlider from '@/components/HeroSlider'
 import { prisma } from '@/lib/db'
 import { getCurrentUser } from '@/app/actions'
 import { Mail, Phone, MapPin } from 'lucide-react'
@@ -25,41 +26,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col w-full -mt-8">
-      {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-64 overflow-hidden bg-gradient-to-br from-green-500 via-teal-700 to-indigo-900 border-b border-white/10">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay"></div>
-        
-        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 tracking-tighter mb-6 uppercase">
-            ELECRIC EEL <br/> FESTIVAL
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 font-medium tracking-wide">
-            3 nights of premiere artistry, hypnotic craftsmanship, and underground games.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="#tickets" className="bg-accent-yellow hover:bg-yellow-500 text-background font-bold px-8 py-4 rounded-full shadow-lg shadow-accent-yellow/20 transition-transform hover:scale-105 flex items-center justify-center gap-2">
-              Get Tickets →
-            </Link>
-            <Link href="/events/cultural" className="bg-transparent border-2 border-white/30 text-white font-bold px-8 py-4 rounded-full hover:bg-white/10 transition-colors backdrop-blur-sm">
-              View Lineup
-            </Link>
-          </div>
-        </div>
-
-        {/* Hero Image Overlay */}
-        <div className="absolute left-1/2 -translate-x-1/2 -bottom-48 w-[90%] md:w-[70%] max-w-4xl h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10 z-20 group">
-          <img 
-            src="/hero.png" 
-            alt="Festival Crowd with Sparklers" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
-        </div>
-      </section>
-
-      {/* Spacer for the absolute image overlay */}
-      <div className="h-56"></div>
+      <HeroSlider />
 
       {/* Featured Artists/Events Section */}
       <section className="w-full py-20 px-4">
