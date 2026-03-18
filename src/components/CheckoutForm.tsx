@@ -22,22 +22,22 @@ export default function CheckoutForm({
   const [success, setSuccess] = useState(false)
   // Auto-initialize required teammates if it is a fixed size team
   const initialMembers = isTeamEvent && minTeamSize && minTeamSize > 1
-    ? Array.from({ length: minTeamSize - 1 }).map(() => ({ name: '', email: '' }))
+    ? Array.from({ length: minTeamSize - 1 }).map(() => ({ name: '' }))
     : []
 
-  const [teamMembers, setTeamMembers] = useState<{name: string, email: string}[]>(initialMembers)
+  const [teamMembers, setTeamMembers] = useState<{name: string}[]>(initialMembers)
   const router = useRouter()
   
   const handleAddMember = () => {
     if (maxTeamSize && teamMembers.length + 1 >= maxTeamSize) return
-    setTeamMembers([...teamMembers, { name: '', email: '' }])
+    setTeamMembers([...teamMembers, { name: '' }])
   }
 
   const handleRemoveMember = (index: number) => {
     setTeamMembers(teamMembers.filter((_, i) => i !== index))
   }
 
-  const updateMember = (index: number, field: 'name' | 'email', value: string) => {
+  const updateMember = (index: number, field: 'name', value: string) => {
     const newMembers = [...teamMembers]
     newMembers[index][field] = value
     setTeamMembers(newMembers)
@@ -56,14 +56,12 @@ export default function CheckoutForm({
 
     const formData = new FormData(e.currentTarget)
     const phoneNumber = formData.get('phoneNumber') as string
-    const college = formData.get('college') as string
     const teamName = isTeamEvent ? (formData.get('teamName') as string) : undefined
     
     const formattedMembers = teamMembers.map(m => ({ ...m, isCaptain: false }))
 
     const res = await registerEvent(eventId, {
       phoneNumber,
-      college,
       teamName,
       teamMembers: isTeamEvent && formattedMembers.length > 0 ? formattedMembers : undefined
     })
@@ -107,10 +105,6 @@ export default function CheckoutForm({
           <label className="block text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Phone Number</label>
           <input type="tel" name="phoneNumber" required pattern="[0-9]{10}" title="10 digit mobile number" className="block w-full bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:ring-accent-yellow focus:border-accent-yellow p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="9876543210" />
         </div>
-        <div>
-          <label className="block text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">College/University</label>
-          <input type="text" name="college" required className="block w-full bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:ring-accent-yellow focus:border-accent-yellow p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="Underground Academy" />
-        </div>
 
         {isTeamEvent && (
           <div className="pt-8 mt-8 border-t border-white/10 space-y-8">
@@ -148,16 +142,6 @@ export default function CheckoutForm({
                           placeholder="e.g. Jane Doe" 
                           value={member.name}
                           onChange={(e) => updateMember(index, 'name', e.target.value)}
-                          className="block w-full bg-transparent border-b border-white/10 text-white focus:border-accent-yellow pb-2 text-sm outline-none transition-all placeholder-gray-700" 
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-bold">Email Address (Optional)</label>
-                        <input 
-                          type="email" 
-                          placeholder="They'll receive updates here" 
-                          value={member.email}
-                          onChange={(e) => updateMember(index, 'email', e.target.value)}
                           className="block w-full bg-transparent border-b border-white/10 text-white focus:border-accent-yellow pb-2 text-sm outline-none transition-all placeholder-gray-700" 
                         />
                       </div>

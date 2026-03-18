@@ -20,6 +20,7 @@ async function main() {
       isTeamEvent: true,
       minTeamSize: 6,
       maxTeamSize: 6,
+      imageUrl: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Carrom',
@@ -29,6 +30,7 @@ async function main() {
       isTeamEvent: true,
       minTeamSize: 2,
       maxTeamSize: 2,
+      imageUrl: 'https://images.unsplash.com/photo-1518331539958-693df9ab1d19?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Chess',
@@ -36,6 +38,7 @@ async function main() {
       description: 'Solo chess championship.',
       eventDate: new Date('2026-04-12T11:00:00Z'),
       isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'ESport BGMI',
@@ -45,6 +48,7 @@ async function main() {
       isTeamEvent: true,
       minTeamSize: 4,
       maxTeamSize: 4,
+      imageUrl: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Badminton',
@@ -54,6 +58,7 @@ async function main() {
       isTeamEvent: true,
       minTeamSize: 2,
       maxTeamSize: 2,
+      imageUrl: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80',
     },
     // Cultural
     {
@@ -62,6 +67,7 @@ async function main() {
       description: 'Solo debate competition.',
       eventDate: new Date('2026-04-15T15:00:00Z'),
       isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1560523160-59a686b24037?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Essay writing',
@@ -69,6 +75,7 @@ async function main() {
       description: 'Solo essay writing competition.',
       eventDate: new Date('2026-04-16T10:00:00Z'),
       isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Quiz competition',
@@ -76,6 +83,7 @@ async function main() {
       description: 'Solo quiz competition testing knowledge.',
       eventDate: new Date('2026-04-17T14:00:00Z'),
       isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Funny games sangeet khurchi',
@@ -83,6 +91,7 @@ async function main() {
       description: 'Solo musical chairs competition.',
       eventDate: new Date('2026-04-18T16:00:00Z'),
       isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1473691955023-da1c49c95c78?auto=format&fit=crop&q=80',
     },
     {
       eventName: 'Speech competition',
@@ -90,6 +99,7 @@ async function main() {
       description: 'Solo speech delivery contest.',
       eventDate: new Date('2026-04-19T11:00:00Z'),
       isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80',
     }
   ]
 

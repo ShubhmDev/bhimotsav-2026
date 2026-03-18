@@ -40,27 +40,24 @@ model Registration {
   userId       String
   eventId      String
   phoneNumber  String?
-  college      String?
   teamName     String?
   registeredAt DateTime @default(now())
 
-  user        User         @relation(fields: [userId], references: [id])
-  event       Event        @relation(fields: [eventId], references: [id])
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event       Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
   teamMembers TeamMember[]
 
   @@unique([userId, eventId])
-  @@index([userId])
   @@index([eventId])
 }
 
 model TeamMember {
-  id             String  @id @default(cuid())
+  id             String       @id @default(cuid())
   registrationId String
   name           String
-  email          String?
-  isCaptain      Boolean @default(false)
-
-  registration Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
+  isCaptain      Boolean      @default(false)
+  joinedAt       DateTime     @default(now())
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
 
   @@index([registrationId])
 }

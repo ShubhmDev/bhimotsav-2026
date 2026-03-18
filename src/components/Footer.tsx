@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -10,12 +11,13 @@ export default function Footer() {
           <div className="md:col-span-4 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-accent-yellow text-background w-10 h-10 flex items-center justify-center font-bold text-2xl">
-                  E
-                </div>
-                <span className="text-xl font-bold tracking-widest text-foreground uppercase">
-                  EventHub
-                </span>
+                <Image 
+                  src="/logo.png" 
+                  alt="EventHub Logo" 
+                  width={150} 
+                  height={50} 
+                  className="h-12 w-auto object-contain"
+                />
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 Underground Starts Here.<br/>

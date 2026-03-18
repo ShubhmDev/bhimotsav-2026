@@ -42,7 +42,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       'Role': isTeam ? 'Captain' : 'Solo',
       'Phone Number': reg.phoneNumber || 'N/A',
       'Participant Phone': reg.user.phoneNumber,
-      'College/University': reg.college || 'N/A',
       'Registered At': new Date(reg.registeredAt).toLocaleString()
     })
 
@@ -56,8 +55,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
           'Participant Name': member.name,
           'Role': 'Member',
           'Phone Number': reg.phoneNumber || 'N/A', // fallback to captain
-          'Participant Phone': member.email || 'N/A', // Keeping member email if we didn't change TeamMember
-          'College/University': reg.college || 'N/A',
           'Registered At': new Date(reg.registeredAt).toLocaleString()
         })
       }

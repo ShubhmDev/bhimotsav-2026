@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image' // Added Image import
 
 export default function EventCard({ event, isRegistered }: { event: any, isRegistered: boolean }) {
   const eventDateObj = new Date(event.eventDate)
@@ -17,12 +18,13 @@ export default function EventCard({ event, isRegistered }: { event: any, isRegis
   return (
     <div className="bg-[#f2efe4] rounded-3xl p-4 flex flex-col h-full shadow-xl transition-transform hover:-translate-y-2 relative border border-white/20">
       
-      {/* Event Image Placeholder (or real image if it exists) */}
-      <div className="w-full h-56 bg-gray-800 rounded-2xl mb-6 overflow-hidden relative shadow-inner">
-         <img 
+      {/* Image Header */}
+      <div className="relative h-48 w-full bg-gray-800 rounded-2xl mb-6 overflow-hidden shadow-inner"> {/* Adjusted div classes and height */}
+         <Image // Changed img to Image
             src={event.imageUrl || 'https://images.unsplash.com/photo-1540039155733-d7316ba31c25?auto=format&fit=crop&q=80'} 
             alt={event.eventName}
-            className="w-full h-full object-cover"
+            fill // Added fill prop
+            className="object-cover transition-transform duration-700 hover:scale-105" // Adjusted className
          />
       </div>
 

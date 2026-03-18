@@ -99,7 +99,7 @@ export default async function AdminParticipantsPage({ params }: { params: Promis
                         </div>
                       </details>
                     ) : (
-                       <div className="text-sm">{reg.college || 'N/A'}</div>
+                       <div className="text-sm text-gray-400 italic">Solo</div>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(reg.registeredAt).toLocaleString()}</td>
