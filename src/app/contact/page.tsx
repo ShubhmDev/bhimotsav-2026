@@ -26,7 +26,7 @@ export default function ContactPage() {
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400 mb-16">
             <a href="mailto:contact@yoursaas.ai" className="hover:text-zinc-200 transition-colors">contact@yoursaas.ai</a>
             <span className="text-zinc-600 px-1">•</span>
-            <span className="hover:text-zinc-200 transition-colors">+1 (800) 123 XX21</span>
+            <span className="hover:text-zinc-200 transition-colors">+91 8530469718</span>
             <span className="text-zinc-600 px-1">•</span>
             <a href="mailto:support@yoursaas.ai" className="hover:text-zinc-200 transition-colors">support@yoursaas.ai</a>
           </div>
@@ -51,7 +51,7 @@ export default function ContactPage() {
                 
                 {/* Pin Tooltip */}
                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 border border-zinc-700 text-xs px-3 py-1.5 rounded-full text-zinc-300 whitespace-nowrap shadow-[0_0_15px_rgba(59,130,246,0.3)] backdrop-blur-sm shadow-blue-900/20">
-                  We are here
+                  Samajh Kalyan, Vishrantwadi, Pune
                 </div>
                 {/* Connecting Line */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-gradient-to-t from-blue-500 to-transparent"></div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
               <input 
                 id="fullName"
                 type="text" 
-                placeholder="Manu Arora"
+                placeholder="John Doe"
                 className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all sm:text-sm shadow-inner"
               />
             </div>
@@ -85,19 +85,19 @@ export default function ContactPage() {
               <input 
                 id="email"
                 type="email" 
-                placeholder="support@aceternity.com"
+                placeholder="support@example.com"
                 className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all sm:text-sm shadow-inner"
               />
             </div>
 
             <div className="space-y-2">
               <label htmlFor="company" className="text-sm font-medium text-zinc-300">
-                Company
+                Hostel Name
               </label>
               <input 
                 id="company"
                 type="text" 
-                placeholder="Aceternity Labs LLC"
+                placeholder="Unit 1"
                 className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all sm:text-sm shadow-inner"
               />
             </div>

@@ -27,7 +27,7 @@ export default async function RootLayout({
           <main className="flex-grow w-full">
             {children}
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </body>
     </html>

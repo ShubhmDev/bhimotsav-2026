@@ -82,7 +82,7 @@ export async function logout() {
 
 import { revalidatePath } from 'next/cache'
 
-export async function registerEvent(eventId: string, details: { phoneNumber: string, teamName?: string, teamMembers?: Array<{name: string, isCaptain?: boolean}> }) {
+export async function registerEvent(eventId: string, details: { phoneNumber: string, teamName?: string, hostelName?: string, teamMembers?: Array<{name: string, isCaptain?: boolean}> }) {
   const user = await getCurrentUser()
   if (!user) throw new Error('Not authenticated')
 
@@ -93,6 +93,7 @@ export async function registerEvent(eventId: string, details: { phoneNumber: str
         eventId: eventId,
         phoneNumber: details.phoneNumber,
         teamName: details.teamName || null,
+        hostelName: details.hostelName || null,
         teamMembers: details.teamMembers ? {
            create: details.teamMembers
         } : undefined

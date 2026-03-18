@@ -41,6 +41,7 @@ model Registration {
   eventId      String
   phoneNumber  String?
   teamName     String?
+  hostelName   String?
   registeredAt DateTime @default(now())
 
   user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)

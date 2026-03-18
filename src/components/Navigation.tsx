@@ -12,8 +12,9 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
 
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/events/games', label: 'Games Events' },
-    { href: '/events/cultural', label: 'Cultural Events' },
+    { href: '/events/games', label: 'Games' },
+    { href: '/events/cultural', label: 'Cultural' },
+    { href: '/events/educational', label: 'Educational' },
     { href: '/my-events', label: 'My Events' },
     { href: '/contact', label: 'Contact' },
   ]
@@ -31,7 +32,7 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
               <Image 
                 src="/logo.png" 
                 alt="Logo" 
-                width={90} 
+                width={120} 
                 height={30} 
                 className="w-auto object-contain transition-transform group-hover:scale-105"
                 priority
@@ -47,7 +48,7 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? 'text-accent-yellow'
+                    ? 'text-accent-blue'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
@@ -63,14 +64,14 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
                  <Link href="/dashboard" className="text-sm font-medium text-gray-300 hover:text-white transition">
                     Dashboard
                  </Link>
-                 <div className="h-10 w-10 rounded-full bg-accent-yellow flex items-center justify-center text-background font-bold shadow-lg shadow-accent-yellow/20">
+                 <div className="h-10 w-10 rounded-full bg-accent-blue flex items-center justify-center text-background font-bold shadow-lg shadow-accent-blue/20">
                    {user.name.charAt(0).toUpperCase()}
                  </div>
                </>
             ) : (
               <Link
                 href="/identify"
-                className="bg-accent-yellow hover:bg-yellow-500 text-background px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 shadow-md"
+                className="bg-accent-blue hover:bg-blue-500 text-background px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 shadow-md"
               >
                 Get Tickets
               </Link>
@@ -100,7 +101,7 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
                 href={link.href}
                 className={`block px-3 py-3 rounded-lg text-base font-medium ${
                   pathname === link.href
-                    ? 'bg-white/5 text-accent-yellow'
+                    ? 'bg-white/5 text-accent-blue'
                     : 'text-gray-300 hover:bg-white/5 hover:text-white'
                 }`}
                 onClick={() => setIsOpen(false)}
@@ -112,7 +113,7 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
             <div className="pt-4 mt-4 border-t border-white/10">
               {user ? (
                 <div className="flex items-center gap-4 px-3 py-2">
-                  <div className="h-12 w-12 rounded-full bg-accent-yellow flex items-center justify-center text-background font-bold text-xl">
+                  <div className="h-12 w-12 rounded-full bg-accent-blue flex items-center justify-center text-background font-bold text-xl">
                     {user.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
@@ -123,7 +124,7 @@ export default function Navigation({ user }: { user: { name: string, phoneNumber
               ) : (
                 <Link
                   href="/identify"
-                  className="block w-full text-center bg-accent-yellow hover:bg-yellow-500 text-background font-bold px-4 py-3 rounded-lg transition"
+                  className="block w-full text-center bg-accent-blue hover:bg-blue-500 text-background font-bold px-4 py-3 rounded-lg transition"
                   onClick={() => setIsOpen(false)}
                 >
                   Get Tickets

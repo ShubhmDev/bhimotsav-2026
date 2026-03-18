@@ -9,7 +9,7 @@ async function main() {
   await prisma.event.deleteMany()
 
   console.log('Seeding new events...')
-  
+
   const events = [
     // Games
     {
@@ -30,7 +30,7 @@ async function main() {
       isTeamEvent: true,
       minTeamSize: 2,
       maxTeamSize: 2,
-      imageUrl: 'https://images.unsplash.com/photo-1518331539958-693df9ab1d19?auto=format&fit=crop&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1767619834318-63184920c4b1?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       eventName: 'Chess',
@@ -67,7 +67,7 @@ async function main() {
       description: 'Solo debate competition.',
       eventDate: new Date('2026-04-15T15:00:00Z'),
       isTeamEvent: false,
-      imageUrl: 'https://images.unsplash.com/photo-1560523160-59a686b24037?auto=format&fit=crop&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1679833645645-e262e042f532?q=80&w=1082&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       eventName: 'Essay writing',
@@ -75,7 +75,7 @@ async function main() {
       description: 'Solo essay writing competition.',
       eventDate: new Date('2026-04-16T10:00:00Z'),
       isTeamEvent: false,
-      imageUrl: 'https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1630032866155-f87ec4d047bd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     {
       eventName: 'Quiz competition',
@@ -100,6 +100,64 @@ async function main() {
       eventDate: new Date('2026-04-19T11:00:00Z'),
       isTeamEvent: false,
       imageUrl: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80',
+    },
+    // New Events
+    {
+      eventName: 'Cricket Competition',
+      category: 'Games',
+      description: '11 players team cricket matches.',
+      eventDate: new Date('2026-04-20T08:00:00Z'),
+      isTeamEvent: true,
+      minTeamSize: 11,
+      maxTeamSize: 11,
+      imageUrl: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80',
+    },
+    {
+      eventName: 'Marathon',
+      category: 'Games',
+      description: '5km city run for fitness and fun.',
+      eventDate: new Date('2026-04-21T06:00:00Z'),
+      isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1530549387074-d5619b114457?auto=format&fit=crop&q=80',
+    },
+
+    {
+      eventName: 'Project Competition',
+      category: 'Educational',
+      description: 'Showcase your innovation and technical projects.',
+      eventDate: new Date('2026-04-23T11:00:00Z'),
+      isTeamEvent: true,
+      minTeamSize: 1,
+      maxTeamSize: 4,
+      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80',
+    },
+    {
+      eventName: '12-Hour Study Challenge',
+      category: 'Educational',
+      description: 'A test of endurance and focus - can you study for 12 hours?',
+      eventDate: new Date('2026-04-24T08:00:00Z'),
+      isTeamEvent: false,
+      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80',
+    },
+    {
+      eventName: 'Drama',
+      category: 'Cultural',
+      description: 'Live theatrical performances and skits.',
+      eventDate: new Date('2026-04-25T18:00:00Z'),
+      isTeamEvent: true,
+      minTeamSize: 2,
+      maxTeamSize: 15,
+      imageUrl: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80',
+    },
+    {
+      eventName: 'Fashion Show',
+      category: 'Cultural',
+      description: 'Theme: Historical figures, Political figures.',
+      eventDate: new Date('2026-04-26T19:00:00Z'),
+      isTeamEvent: true,
+      minTeamSize: 1,
+      maxTeamSize: 10,
+      imageUrl: '/images/85679884.jpg',
     }
   ]
 

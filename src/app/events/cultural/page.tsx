@@ -27,7 +27,7 @@ export default async function CulturalEventsPage() {
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-accent-yellow text-sm font-bold tracking-widest uppercase block mb-4">Live Performances</span>
+          <span className="text-accent-blue text-sm font-bold tracking-widest uppercase block mb-4">Live Performances</span>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mix-blend-screen">
             Cultural Lineup
           </h1>

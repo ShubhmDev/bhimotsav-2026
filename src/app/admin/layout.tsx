@@ -18,7 +18,7 @@ export default async function AdminLayout({
         <header className="bg-gray-900 text-white shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <ShieldAlert className="text-yellow-400" />
+              <ShieldAlert className="text-blue-400" />
               <Link href="/admin" className="font-bold text-lg tracking-wide">
                 Admin Panel
               </Link>

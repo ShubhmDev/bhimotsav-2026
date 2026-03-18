@@ -38,9 +38,9 @@ export default function EventCard({ event, isRegistered }: { event: any, isRegis
         
         <p suppressHydrationWarning className="font-bold text-gray-900 text-sm mb-6">Starts {timeStr}</p>
         
-        <div className="bg-accent-yellow text-gray-900 text-xs font-bold px-4 py-1.5 rounded-full mb-8">
+        {/* <div className="bg-accent-blue text-gray-900 text-xs font-bold px-4 py-1.5 rounded-full mb-8">
            Entry Price: Free
-        </div>
+        </div> */}
 
       </div>
 
@@ -52,7 +52,7 @@ export default function EventCard({ event, isRegistered }: { event: any, isRegis
         ) : (
           <Link 
             href={`/events/${event.id}/register`}
-            className="w-full block text-center text-gray-900 hover:text-blue-600 font-bold py-3 uppercase tracking-widest text-sm border-t border-gray-300 transition-colors"
+            className="bg-blue-500 w-full block text-center text-gray-900 hover:text-white rounded-full font-bold py-3 uppercase tracking-widest text-sm border-t border-gray-300 transition-colors"
           >
             REGISTER NOW
           </Link>

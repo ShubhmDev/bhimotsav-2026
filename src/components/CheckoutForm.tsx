@@ -57,12 +57,14 @@ export default function CheckoutForm({
     const formData = new FormData(e.currentTarget)
     const phoneNumber = formData.get('phoneNumber') as string
     const teamName = isTeamEvent ? (formData.get('teamName') as string) : undefined
+    const hostelName = formData.get('hostelName') as string || undefined
     
     const formattedMembers = teamMembers.map(m => ({ ...m, isCaptain: false }))
 
     const res = await registerEvent(eventId, {
       phoneNumber,
       teamName,
+      hostelName,
       teamMembers: isTeamEvent && formattedMembers.length > 0 ? formattedMembers : undefined
     })
     
@@ -80,8 +82,8 @@ export default function CheckoutForm({
 
   if (success) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center space-y-6 min-h-[400px] bg-[#111] rounded-3xl border border-accent-yellow/30 shadow-[0_0_40px_rgba(250,204,21,0.1)]">
-         <CheckCircle className="text-accent-yellow w-24 h-24 mx-auto" />
+      <div className="flex flex-col items-center justify-center p-12 text-center space-y-6 min-h-[400px] bg-[#111] rounded-3xl border border-accent-blue/30 shadow-[0_0_40px_rgba(59,130,246,0.1)]">
+         <CheckCircle className="text-accent-blue w-24 h-24 mx-auto" />
          <div>
             <h3 className="text-3xl font-black text-white uppercase tracking-tighter">Secured</h3>
             <p className="text-gray-400 mt-2 font-medium">Your pass has been assigned. Redirecting...</p>
@@ -103,7 +105,7 @@ export default function CheckoutForm({
       <div className="space-y-5 relative z-10">
         <div>
           <label className="block text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Phone Number</label>
-          <input type="tel" name="phoneNumber" required pattern="[0-9]{10}" title="10 digit mobile number" className="block w-full bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:ring-accent-yellow focus:border-accent-yellow p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="9876543210" />
+          <input type="tel" name="phoneNumber" required pattern="[0-9]{10}" title="10 digit mobile number" className="block w-full bg-[#0a0a0a] border border-white/10 text-white rounded-xl focus:ring-accent-blue focus:border-accent-blue p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="9876543210" />
         </div>
 
         {isTeamEvent && (
@@ -114,18 +116,22 @@ export default function CheckoutForm({
             </div>
 
             <div>
-              <label className="block text-xs font-bold tracking-widest text-accent-yellow uppercase mb-3">What is your team called?</label>
-              <input type="text" name="teamName" required className="block w-full bg-[#0a0a0a] border border-accent-yellow/30 text-white rounded-xl focus:ring-accent-yellow focus:border-accent-yellow p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="Enter your team name (e.g., The Midnight Runners)" />
+              <label className="block text-xs font-bold tracking-widest text-accent-blue uppercase mb-3">Team name</label>
+              <input type="text" name="teamName" required className="block w-full bg-[#0a0a0a] border border-accent-blue/30 text-white rounded-xl focus:ring-accent-blue focus:border-accent-blue p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="Enter your team name (e.g., The Midnight Runners)" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold tracking-widest text-accent-blue uppercase mb-3">Hostel name</label>
+              <input type="text" name="hostelName" required className="block w-full bg-[#0a0a0a] border border-accent-blue/30 text-white rounded-xl focus:ring-accent-blue focus:border-accent-blue p-4 outline-none transition-all placeholder-gray-700 font-medium" placeholder="Enter your hostel name (e.g., Unit 1)" />
             </div>
 
             <div className="space-y-5 bg-white/5 p-6 rounded-2xl border border-white/5">
                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                  <div className="space-y-1">
-                   <label className="block text-xs font-bold tracking-widest text-gray-300 uppercase">Who is joining you?</label>
+                   <label className="block text-xs font-bold tracking-widest text-gray-300 uppercase">Team member name</label>
                    <p className="text-xs text-gray-500 font-medium">Current roster size: {teamMembers.length + 1}</p>
                  </div>
                  {(!maxTeamSize || teamMembers.length + 1 < maxTeamSize) && (
-                   <button type="button" onClick={handleAddMember} className="bg-accent-yellow/10 text-accent-yellow hover:bg-accent-yellow hover:text-background transition-colors px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                   <button type="button" onClick={handleAddMember} className="bg-accent-blue/10 text-accent-blue hover:bg-accent-blue hover:text-background transition-colors px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center gap-2">
                      <Plus size={16} /> Add Teammate
                    </button>
                  )}
@@ -142,7 +148,7 @@ export default function CheckoutForm({
                           placeholder="e.g. Jane Doe" 
                           value={member.name}
                           onChange={(e) => updateMember(index, 'name', e.target.value)}
-                          className="block w-full bg-transparent border-b border-white/10 text-white focus:border-accent-yellow pb-2 text-sm outline-none transition-all placeholder-gray-700" 
+                          className="block w-full bg-transparent border-b border-white/10 text-white focus:border-accent-blue pb-2 text-sm outline-none transition-all placeholder-gray-700" 
                         />
                       </div>
                     </div>
@@ -167,10 +173,10 @@ export default function CheckoutForm({
 
       <div className="bg-white/5 text-gray-300 p-5 rounded-2xl border border-white/10 flex justify-between items-center font-bold uppercase tracking-widest text-sm relative z-10">
          <span>Entry Pass</span>
-         <span className="bg-accent-yellow text-background px-3 py-1 rounded bg-opacity-100">Free</span>
+         <span className="bg-accent-blue text-background px-3 py-1 rounded bg-opacity-100">Free</span>
       </div>
 
-      <button disabled={loading} type="submit" className="w-full bg-accent-yellow hover:bg-yellow-500 text-background font-black uppercase tracking-widest py-4 mt-8 rounded-xl transition-all shadow-[0_0_20px_rgba(250,204,21,0.2)] disabled:bg-gray-600 disabled:text-gray-400 disabled:shadow-none hover:shadow-[0_0_30px_rgba(250,204,21,0.4)] hover:-translate-y-1 relative z-10">
+      <button disabled={loading} type="submit" className="w-full bg-accent-blue hover:bg-blue-500 text-background font-black uppercase tracking-widest py-4 mt-8 rounded-xl transition-all shadow-[0_0_20px_rgba(59,130,246,0.2)] disabled:bg-gray-600 disabled:text-gray-400 disabled:shadow-none hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:-translate-y-1 relative z-10">
         {loading ? 'Processing...' : 'Confirm Registration'}
       </button>
     </form>

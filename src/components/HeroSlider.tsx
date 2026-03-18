@@ -15,10 +15,10 @@ type HeroSlide = {
 
 const slides: HeroSlide[] = [
   {
-    era: 'Past Moments',
-    title: 'Where Legends Took The Stage',
+    era: 'Upcoming',
+    title: 'Ambedkar-Parv Bhim Janmotsav Sohla 2K26',
     description:
-      'Relive the thunder of packed crowds, neon lights, and unforgettable festival performances from last season.',
+      'The Festival of a man who changed millions of lives \n celebrating 135th birth anniversary of Bharat Ratna Dr B. R. Ambedkar',
     ctaLabel: 'View Highlights',
     ctaHref: '/events/cultural',
     imageUrl:
@@ -36,9 +36,9 @@ const slides: HeroSlide[] = [
   },
   {
     era: 'Upcoming',
-    title: 'Next Up: Bigger Nights, Wilder Vibes',
+    title: 'Where Hostel Life Comes Alive.',
     description:
-      'Explore upcoming cultural showcases, sports finals, and celebration nights crafted for an electric college festival season.',
+      'A place where students connect, celebrate, and create unforgettable hostel memories.',
     ctaLabel: 'Explore Events',
     ctaHref: '/events/games',
     imageUrl:
@@ -84,7 +84,7 @@ export default function HeroSlider() {
 
       <div className="absolute inset-0 bg-black/45" />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(250,204,21,0.18),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(6,182,212,0.18),transparent_40%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.18),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(6,182,212,0.18),transparent_40%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-[78vh] w-full max-w-7xl items-center px-4 pb-20 pt-32 sm:px-6 lg:px-10">
         <div key={activeSlide.title} className="max-w-3xl animate-[fadeIn_700ms_ease-out]">
@@ -101,7 +101,7 @@ export default function HeroSlider() {
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               href={activeSlide.ctaHref}
-              className="rounded-full bg-accent-yellow px-8 py-4 text-sm font-black uppercase tracking-wide text-black transition hover:scale-105 hover:bg-yellow-400"
+              className="rounded-full bg-accent-blue px-8 py-4 text-sm font-black uppercase tracking-wide text-black transition hover:scale-105 hover:bg-blue-400"
             >
               {activeSlide.ctaLabel}
             </Link>
@@ -144,7 +144,7 @@ export default function HeroSlider() {
             onClick={() => setActiveIndex(index)}
             className={`h-2.5 rounded-full transition-all ${
               index === activeIndex
-                ? 'w-10 bg-accent-yellow'
+                ? 'w-10 bg-accent-blue'
                 : 'w-2.5 bg-white/50 hover:bg-white/70'
             }`}
           />

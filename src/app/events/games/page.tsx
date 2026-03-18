@@ -27,7 +27,7 @@ export default async function GamesEventsPage() {
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-accent-yellow text-sm font-bold tracking-widest uppercase block mb-4">Tournaments</span>
+          <span className="text-accent-blue text-sm font-bold tracking-widest uppercase block mb-4">Tournaments</span>
           <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mix-blend-screen">
             Games & Sports
           </h1>

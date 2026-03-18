@@ -30,14 +30,14 @@ export default async function EventCheckoutPage({ params }: { params: Promise<{ 
     return (
       <div className="text-center py-32 bg-[#0a0a0a] min-h-[60vh] flex flex-col items-center justify-center">
          <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-6">You are already registered!</h2>
-         <Link href="/my-events" className="text-background bg-accent-yellow hover:bg-yellow-500 font-bold px-8 py-3 rounded-full transition-all uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(250,204,21,0.2)]">View My Passes</Link>
+         <Link href="/my-events" className="text-background bg-accent-blue hover:bg-blue-500 font-bold px-8 py-3 rounded-full transition-all uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(59,130,246,0.2)]">View My Passes</Link>
       </div>
     )
   }
 
   return (
     <div className="max-w-5xl mx-auto py-12 px-4 relative">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-yellow/5 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-blue/5 rounded-full blur-[150px] pointer-events-none"></div>
 
       <Link href="javascript:history.back()" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 font-bold uppercase tracking-widest text-sm transition-colors relative z-10">
          <ArrowLeft size={16} /> Back
@@ -48,7 +48,7 @@ export default async function EventCheckoutPage({ params }: { params: Promise<{ 
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
             
             <div className="relative z-10">
-              <span className="inline-block bg-accent-yellow text-background text-xs font-black px-3 py-1 rounded-sm mb-6 uppercase tracking-widest">{event.category}</span>
+              <span className="inline-block bg-accent-blue text-background text-xs font-black px-3 py-1 rounded-sm mb-6 uppercase tracking-widest">{event.category}</span>
               <h1 className="text-4xl font-black text-white mb-4 uppercase tracking-tighter mix-blend-screen">{event.eventName}</h1>
               <p className="text-gray-400 mb-10 leading-relaxed font-medium">{event.description}</p>
               

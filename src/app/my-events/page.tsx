@@ -28,7 +28,7 @@ export default async function MyEventsPage() {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4">
       <div className="mb-12 border-b border-white/10 pb-8">
-        <span className="text-accent-yellow text-sm font-bold tracking-widest uppercase block mb-2">Your Itinerary</span>
+        <span className="text-accent-blue text-sm font-bold tracking-widest uppercase block mb-2">Your Itinerary</span>
         <h1 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">My Passes</h1>
         <p className="mt-4 text-gray-400 font-medium text-lg">View and manage the events you are officially attending.</p>
       </div>
@@ -40,9 +40,9 @@ export default async function MyEventsPage() {
            </div>
            <p className="mb-8 text-2xl font-bold text-white tracking-tight">You haven't secured any passes yet.</p>
            <div className="flex flex-col sm:flex-row justify-center gap-6">
-             <Link href="/events/games" className="text-gray-400 hover:text-white transition font-bold uppercase tracking-widest text-sm border-b border-white/20 hover:border-accent-yellow pb-1">Explore Tournaments</Link>
+             <Link href="/events/games" className="text-gray-400 hover:text-white transition font-bold uppercase tracking-widest text-sm border-b border-white/20 hover:border-accent-blue pb-1">Explore Tournaments</Link>
              <span className="text-gray-700 hidden sm:block">|</span>
-             <Link href="/events/cultural" className="text-gray-400 hover:text-white transition font-bold uppercase tracking-widest text-sm border-b border-white/20 hover:border-accent-yellow pb-1">Cultural Lineup</Link>
+             <Link href="/events/cultural" className="text-gray-400 hover:text-white transition font-bold uppercase tracking-widest text-sm border-b border-white/20 hover:border-accent-blue pb-1">Cultural Lineup</Link>
            </div>
         </div>
       ) : (
