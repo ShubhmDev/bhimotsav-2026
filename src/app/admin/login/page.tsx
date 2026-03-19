@@ -25,7 +25,7 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
             <input 
               type="password" 
               name="password" 
-              className="mt-1 block w-full p-2 border rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full p-2 border rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 text-black"
               required 
               placeholder="admin123"
             />
