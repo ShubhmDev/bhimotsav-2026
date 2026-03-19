@@ -13,7 +13,7 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
       <div className="bg-white p-8 rounded-xl shadow-md border max-w-sm w-full">
-        <h1 className="text-2xl font-bold text-center mb-6">Admin Login</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 text-black">Admin Login</h1>
         {hasInvalidPassword && (
           <p className="mb-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
             Invalid password. Try again.
