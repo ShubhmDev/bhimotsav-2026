@@ -63,15 +63,24 @@ export async function getCurrentUser() {
   // Cache user data to prevent hitting the DB on every page load
   const getCachedUser = unstable_cache(
     async (userToken: string) => {
-      return await prisma.user.findUnique({
-        where: { user_token: userToken }
-      })
+      try {
+        return await prisma.user.findUnique({
+          where: { user_token: userToken }
+        })
+      } catch (error) {
+        console.error('Database unreachable in getCurrentUser:', error)
+        return null
+      }
     },
     ['current-user'],
     { tags: ['user'], revalidate: 60 } // Revalidate every 60 seconds
   )
 
-  return getCachedUser(token)
+  try {
+    return await getCachedUser(token)
+  } catch (error) {
+    return null
+  }
 }
 
 export async function logout() {

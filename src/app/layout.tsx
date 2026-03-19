@@ -8,7 +8,7 @@ import { getCurrentUser } from '@/app/actions'
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
 
 export const metadata: Metadata = {
-  title: 'ELECRIC EEL FESTIVAL | EventHub',
+  title: 'BHIM JANMOTSAV 2K26 | Event Registration',
   description: 'Book your spot at the best events.',
 }
 

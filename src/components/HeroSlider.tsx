@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -74,11 +75,18 @@ export default function HeroSlider() {
         {slides.map((slide, index) => (
           <div
             key={slide.title}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${
+            className={`absolute inset-0 transition-opacity duration-1000 ${
               index === activeIndex ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(${slide.imageUrl})` }}
-          />
+          >
+            <Image
+              src={slide.imageUrl}
+              alt={slide.title}
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
         ))}
       </div>
 
@@ -115,7 +123,7 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
+      <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 mx-auto flex h-full max-w-8xl items-center justify-between px-4 sm:px-6 lg:px-10">
         <button
           type="button"
           onClick={goPrev}
