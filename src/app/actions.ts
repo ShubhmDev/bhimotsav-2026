@@ -136,16 +136,25 @@ export async function registerEvent(eventId: string, details: { phoneNumber: str
 
 export async function unregisterEvent(registrationId: string) {
   const user = await getCurrentUser()
-  if (!user) throw new Error('Not authenticated')
+  if (!user) return { error: 'Not authenticated' }
 
   try {
      const regDoc = await firestoreDB.collection('registrations').doc(registrationId).get()
      
-     if (!regDoc.exists || regDoc.data()?.userId !== user.id) {
-       throw new Error('Unauthorized')
+     if (!regDoc.exists) {
+       return { error: 'Registration not found' }
+     }
+     
+     const regData = regDoc.data()
+     
+     // Log for debugging ID mismatches on production
+     if (regData?.userId !== user.id) {
+       console.error(`Unregister auth mismatch: regUserId=${regData?.userId}, currentUserId=${user.id}`)
+       return { error: 'Unauthorized' }
      }
 
      await regDoc.ref.delete()
+     revalidatePath('/my-events')
      return { success: true }
   } catch (error) {
     console.error('Failed to unregister:', error)
