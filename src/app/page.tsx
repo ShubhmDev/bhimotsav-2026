@@ -3,9 +3,8 @@ import EventCard from '@/components/EventCard'
 import HeroSlider from '@/components/HeroSlider'
 import EventGallery from '@/components/EventGallery'
 import CommitteeMembers from '@/components/CommitteeMembers'
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import { getCurrentUser } from '@/app/actions'
-import { Mail, Phone, MapPin } from 'lucide-react'
 
 export default async function Home() {
   const user = await getCurrentUser()
@@ -13,10 +12,11 @@ export default async function Home() {
   // Fetch some events for the featured section
   let events: any[] = []
   try {
-    events = await prisma.event.findMany({
-      take: 3,
-      orderBy: { eventDate: 'asc' }
-    })
+    const snap = await firestoreDB.collection('events')
+      .orderBy('eventDate', 'asc')
+      .limit(3)
+      .get()
+    events = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   } catch (error) {
     console.error('Failed to fetch featured events:', error)
   }
@@ -25,11 +25,10 @@ export default async function Home() {
   let userRegistrations: string[] = []
   if (user) {
     try {
-      const regs = await prisma.registration.findMany({
-        where: { userId: user.id },
-        select: { eventId: true }
-      })
-      userRegistrations = regs.map(r => r.eventId)
+      const regs = await firestoreDB.collection('registrations')
+        .where('userId', '==', user.id)
+        .get()
+      userRegistrations = regs.docs.map(doc => doc.data().eventId)
     } catch (error) {
       console.error('Failed to fetch user registrations:', error)
     }
@@ -48,7 +47,7 @@ export default async function Home() {
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="rounded-xl overflow-hidden border-2 border-accent-blue/30 relative group">
-             <img src="images/past/WhatsApp Image 2026-03-16 at 11.02.45 AM.jpeg" alt="Cultural Event" className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" />
+             <img src="/images/past/WhatsApp Image 2026-03-16 at 11.02.45 AM.jpeg" alt="Cultural Event" className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" />
              <div className="absolute inset-0 border-4 border-accent-blue/0 group-hover:border-accent-blue/100 transition-colors duration-500 z-10 m-2"></div>
           </div>
           <div className="space-y-6">

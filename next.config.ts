@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: '*.unsplash.com',
       },
       {
         protocol: 'https',
@@ -25,6 +25,22 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fastly.picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pixabay.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.pixabay.com',
       },
     ],
   },
@@ -47,7 +63,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self' 'unsafe-eval' 'unsafe-inline' https://images.unsplash.com https://plus.unsplash.com https://assets.vogue.in https://raw.githubusercontent.com; img-src 'self' data: https://images.unsplash.com https://plus.unsplash.com https://assets.vogue.in https://raw.githubusercontent.com;",
+            value: "default-src 'self' 'unsafe-eval' 'unsafe-inline' https://*.unsplash.com https://plus.unsplash.com https://assets.vogue.in https://raw.githubusercontent.com; img-src 'self' data: https://*.unsplash.com https://plus.unsplash.com https://assets.vogue.in https://raw.githubusercontent.com https://*.pixabay.com https://pixabay.com https://picsum.photos https://fastly.picsum.photos;",
           },
         ],
       },

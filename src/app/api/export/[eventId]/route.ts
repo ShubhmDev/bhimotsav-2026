@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import { cookies } from 'next/headers'
 import * as xlsx from 'xlsx'
 import { NextRequest, NextResponse } from 'next/server'
@@ -12,20 +12,37 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const event = await prisma.event.findUnique({
-    where: { id: eventId },
-    include: {
-      registrations: {
-        include: {
-          user: true,
-          teamMembers: true
-        },
-        orderBy: { registeredAt: 'desc' }
-      }
-    }
-  })
+  const eventDoc = await firestoreDB.collection('events').doc(eventId).get()
+  const event: any = eventDoc.exists ? eventDoc.data() : null
 
   if (!event) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+
+  // Fetch registrations
+  const regsSnap = await firestoreDB.collection('registrations')
+     .where('eventId', '==', eventId)
+     .get()
+
+  // Decorate with user data
+  const regs = await Promise.all(regsSnap.docs.map(async (doc) => {
+     const data = doc.data()
+     let user = null
+     try {
+       const userDoc = await firestoreDB.collection('users').doc(data.userId).get()
+       user = userDoc.exists ? userDoc.data() : null
+     } catch (e) {
+       console.error("Failed to fetch user", data.userId)
+     }
+     return {
+       ...data,
+       user: user || { name: 'Unknown', phoneNumber: 'Unknown' },
+       teamMembers: data.teamMembers || []
+     }
+  }))
+
+  // Sort by registeredAt desc
+  event.registrations = regs.sort((a: any, b: any) => 
+     new Date(b.registeredAt || 0).getTime() - new Date(a.registeredAt || 0).getTime()
+  )
 
   // Flatten Data
   const rowData: any[] = []

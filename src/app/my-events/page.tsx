@@ -1,5 +1,5 @@
 import { getCurrentUser, unregisterEvent } from '@/app/actions'
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import { List, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 import { revalidatePath } from 'next/cache'
@@ -11,10 +11,22 @@ export default async function MyEventsPage() {
 
   let myRegistrations: any[] = []
   try {
-    myRegistrations = await prisma.registration.findMany({
-      where: { userId: user.id },
-      include: { event: true },
-      orderBy: { event: { eventDate: 'asc' } }
+    const regSnapshot = await firestoreDB.collection('registrations')
+      .where('userId', '==', user.id)
+      .get()
+      
+    const regsWithEvents = await Promise.all(regSnapshot.docs.map(async (doc) => {
+       const regData = doc.data()
+       const eventDoc = await firestoreDB.collection('events').doc(regData.eventId).get()
+        return {
+          ...regData,
+          event: eventDoc.exists ? { id: eventDoc.id, ...eventDoc.data() } : null
+        }
+    }))
+
+    // Sort by event date ascending
+    myRegistrations = regsWithEvents.sort((a: any, b: any) => {
+       return new Date(a.event?.eventDate || 0).getTime() - new Date(b.event?.eventDate || 0).getTime()
     })
   } catch (error) {
     console.error('Failed to fetch my-events registrations:', error)
@@ -43,7 +55,7 @@ export default async function MyEventsPage() {
            <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-6 text-gray-500">
              <List size={40} />
            </div>
-           <p className="mb-8 text-2xl font-bold text-white tracking-tight">You haven't secured any passes yet.</p>
+           <p className="mb-8 text-2xl font-bold text-white tracking-tight">You haven&apos;t secured any passes yet.</p>
            <div className="flex flex-col sm:flex-row justify-center gap-6">
              <Link href="/events/games" className="text-gray-400 hover:text-white transition font-bold uppercase tracking-widest text-sm border-b border-white/20 hover:border-accent-blue pb-1">Explore Tournaments</Link>
              <span className="text-gray-700 hidden sm:block">|</span>
@@ -54,7 +66,11 @@ export default async function MyEventsPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {myRegistrations.map((reg: any) => (
             <div key={reg.id} className="relative group">
-              <EventCard event={reg.event} isRegistered={true} />
+              {reg.event ? (
+                 <EventCard event={reg.event} isRegistered={true} />
+              ) : (
+                 <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl">Event data unavailable</div>
+              )}
               
               <form action={removeRegistration} className="absolute top-4 right-4 z-10">
                 <input type="hidden" name="regId" value={reg.id} />

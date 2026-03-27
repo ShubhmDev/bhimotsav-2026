@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -9,20 +9,37 @@ export default async function AdminParticipantsPage({ params }: { params: Promis
   const cookieStore = await cookies()
   if (cookieStore.get('admin_token')?.value !== 'true') redirect('/admin/login')
 
-  const event = await prisma.event.findUnique({
-    where: { id },
-    include: {
-      registrations: {
-        include: { 
-          user: true,
-          teamMembers: true 
-        },
-        orderBy: { registeredAt: 'desc' }
-      }
-    }
-  })
+  const eventDoc = await firestoreDB.collection('events').doc(id).get()
+  const event: any = eventDoc.exists ? eventDoc.data() : null
 
   if (!event) return <div className="p-8 text-center text-red-500">Event not found</div>
+
+  // Fetch registrations
+  const regsSnap = await firestoreDB.collection('registrations')
+     .where('eventId', '==', id)
+     .get()
+
+  // Decorate with user data avoiding multiple awaits in map
+  const regs = await Promise.all(regsSnap.docs.map(async (doc) => {
+     const data = doc.data()
+     let user = null
+     try {
+       const userDoc = await firestoreDB.collection('users').doc(data.userId).get()
+       user = userDoc.exists ? userDoc.data() : null
+     } catch (e) {
+       console.error("Failed to fetch user", data.userId)
+     }
+     return {
+       ...data,
+       user: user || { name: 'Unknown', phoneNumber: 'Unknown' },
+       teamMembers: data.teamMembers || []
+     }
+  }))
+
+  // Sort by registeredAt desc
+  event.registrations = regs.sort((a: any, b: any) => 
+     new Date(b.registeredAt || 0).getTime() - new Date(a.registeredAt || 0).getTime()
+  )
 
   return (
     <div>
@@ -91,8 +108,8 @@ export default async function AdminParticipantsPage({ params }: { params: Promis
                           <div>
                             <span className="text-xs font-bold text-gray-700 bg-gray-100 px-1 py-0.5 rounded">Capt</span> <span className="font-medium text-gray-900">{reg.user.name}</span>
                           </div>
-                          {reg.teamMembers.map((member: any) => (
-                            <div key={member.id}>
+                          {reg.teamMembers.map((member: any, i: number) => (
+                            <div key={i}>
                               <span className="text-xs font-bold text-gray-500 bg-gray-50 px-1 py-0.5 rounded border">Mem</span> <span className="text-gray-700">{member.name}</span>
                             </div>
                           ))}

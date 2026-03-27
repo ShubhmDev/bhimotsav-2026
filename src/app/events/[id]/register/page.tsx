@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import { getCurrentUser } from '@/app/actions'
 import { redirect } from 'next/navigation'
 import CheckoutForm from '@/components/CheckoutForm'
@@ -10,11 +10,12 @@ export default async function EventCheckoutPage({ params }: { params: Promise<{ 
   const user = await getCurrentUser()
   if (!user) redirect('/identify')
 
-  let event = null
+  let event: any = null
   try {
-    event = await prisma.event.findUnique({
-      where: { id }
-    })
+    const eventDoc = await firestoreDB.collection('events').doc(id).get()
+    if (eventDoc.exists) {
+       event = { id: eventDoc.id, ...eventDoc.data() }
+    }
   } catch (error) {
     console.error('Failed to fetch event for registration:', error)
     return <div className="text-center p-16 text-white font-bold text-2xl">Database connection error. Please try again later.</div>
@@ -25,14 +26,15 @@ export default async function EventCheckoutPage({ params }: { params: Promise<{ 
   // Check if already registered
   let existingRegistration = null
   try {
-    existingRegistration = await prisma.registration.findUnique({
-      where: {
-        userId_eventId: {
-          userId: user.id,
-          eventId: event.id
-        }
-      }
-    })
+    const regSnap = await firestoreDB.collection('registrations')
+      .where('userId', '==', user.id)
+      .where('eventId', '==', event.id)
+      .limit(1)
+      .get()
+      
+    if (!regSnap.empty) {
+      existingRegistration = regSnap.docs[0].data()
+    }
   } catch (error) {
     console.error('Failed to check existing registration:', error)
   }

@@ -26,7 +26,9 @@ export default function IdentifyPage() {
               id="name"
               autoComplete="name"
               required
-              className="mt-1 block w-full bg-white/5 border border-white/10 text-white rounded-xl focus:ring-accent-blue focus:border-accent-blue p-4 outline-none transition-all placeholder-gray-600 font-medium"
+              pattern="^[^0-9]+$"
+              title="Name cannot contain numbers"
+              className="mt-1 block w-full bg-white/5 border border-white/10 text-white rounded-xl focus:ring-accent-blue focus:border-accent-blue p-4 outline-none transition-all placeholder-gray-600 font-medium invalid:[&:not(:placeholder-shown)]:border-red-500 invalid:[&:not(:placeholder-shown)]:text-red-500"
               placeholder="John Doe"
             />
           </div>

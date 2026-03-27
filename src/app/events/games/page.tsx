@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import EventCard from '@/components/EventCard'
 import { getCurrentUser } from '@/app/actions'
 
@@ -6,10 +6,12 @@ export default async function GamesEventsPage() {
   const user = await getCurrentUser()
   let events: any[] = []
   try {
-    events = await prisma.event.findMany({
-      where: { category: 'Games' },
-      orderBy: { eventDate: 'asc' }
-    })
+    const eventsSnap = await firestoreDB.collection('events')
+       .where('category', '==', 'Games')
+       .orderBy('eventDate', 'asc')
+       .get()
+
+    events = eventsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   } catch (error) {
     console.error('Failed to fetch games events:', error)
   }
@@ -18,9 +20,10 @@ export default async function GamesEventsPage() {
   let userRegistrations: any[] = []
   if (user) {
     try {
-      userRegistrations = await prisma.registration.findMany({ 
-        where: { userId: user.id } 
-      })
+      const regSnap = await firestoreDB.collection('registrations')
+         .where('userId', '==', user.id)
+         .get()
+      userRegistrations = regSnap.docs.map(doc => doc.data())
     } catch (error) {
       console.error('Failed to fetch user registrations for games events:', error)
     }

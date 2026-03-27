@@ -1,5 +1,5 @@
 import { getCurrentUser } from '@/app/actions'
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import Link from 'next/link'
 import { Calendar, Trophy, List, LogOut } from 'lucide-react'
 import { logout } from '@/app/actions'
@@ -11,12 +11,22 @@ export default async function DashboardPage() {
 
   let myRegistrations: any[] = []
   try {
-    myRegistrations = await prisma.registration.findMany({
-      where: { userId: user.id },
-      include: { event: true },
-      orderBy: { registeredAt: 'desc' },
-      take: 3
-    })
+    const regSnapshot = await firestoreDB.collection('registrations')
+      .where('userId', '==', user.id)
+      .get()
+      
+    const regsWithEvents = await Promise.all(regSnapshot.docs.map(async (doc) => {
+       const regData = doc.data()
+       const eventDoc = await firestoreDB.collection('events').doc(regData.eventId).get()
+       return {
+         ...regData,
+         event: { id: eventDoc.id, ...eventDoc.data() }
+       }
+    }))
+
+    myRegistrations = regsWithEvents
+      .sort((a: any, b: any) => new Date(b.registeredAt || 0).getTime() - new Date(a.registeredAt || 0).getTime())
+      .slice(0, 3)
   } catch (error) {
     console.error('Failed to fetch dashboard registrations:', error)
   }
@@ -93,13 +103,13 @@ export default async function DashboardPage() {
               <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 text-gray-600">
                 <List size={32} />
               </div>
-              <p className="text-gray-400 mb-6 font-medium text-lg">You haven't secured any passes yet.</p>
+              <p className="text-gray-400 mb-6 font-medium text-lg">You haven&apos;t secured any passes yet.</p>
               <Link href="/events/cultural" className="inline-flex bg-accent-blue text-background font-bold px-8 py-4 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all uppercase tracking-widest">Explore Lineup</Link>
             </div>
          ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {myRegistrations.map((reg: any) => (
-                 <EventCard key={reg.id} event={reg.event} isRegistered={true} />
+                 reg.event ? <EventCard key={reg.id} event={reg.event} isRegistered={true} /> : null
               ))}
             </div>
          )}

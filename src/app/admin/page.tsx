@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db'
+import { firestoreDB } from '@/lib/firebase'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -11,10 +11,20 @@ export default async function AdminDashboard() {
 
   let events: any[] = []
   try {
-    events = await prisma.event.findMany({
-      include: { _count: { select: { registrations: true } } },
-      orderBy: { eventDate: 'desc' }
-    })
+    const snap = await firestoreDB.collection('events').orderBy('eventDate', 'desc').get()
+    
+    events = await Promise.all(snap.docs.map(async doc => {
+       const data = doc.data()
+       // Count aggregations query
+       const countQuery = await firestoreDB.collection('registrations').where('eventId', '==', doc.id).count().get()
+       return {
+         id: doc.id,
+         ...data,
+         _count: {
+            registrations: countQuery.data().count
+         }
+       }
+    }))
   } catch (error) {
     console.error('Failed to fetch admin events:', error)
   }

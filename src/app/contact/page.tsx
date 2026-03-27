@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import type { Metadata } from 'next';
+import ContactForm from './ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -65,62 +66,7 @@ export default function ContactPage() {
           {/* Subtle Grid Background for Form */}
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgwem0zOSAzOVYwaC0xdjM5SDB2MWgzOXoiIGZpbGw9IiMzMzMiIGZpbGwtb3BhY2l0eT0iMC4yNCIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] opacity-30 pointer-events-none"></div>
           
-          <form className="relative z-10 space-y-7">
-            <div className="space-y-2">
-              <label htmlFor="fullName" className="text-sm font-medium text-zinc-300">
-                Full name
-              </label>
-              <input 
-                id="fullName"
-                type="text" 
-                placeholder="John Doe"
-                className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all sm:text-sm shadow-inner"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-zinc-300">
-                Email Address
-              </label>
-              <input 
-                id="email"
-                type="email" 
-                placeholder="support@example.com"
-                className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all sm:text-sm shadow-inner"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="company" className="text-sm font-medium text-zinc-300">
-                Hostel Name
-              </label>
-              <input 
-                id="company"
-                type="text" 
-                placeholder="Unit 1"
-                className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all sm:text-sm shadow-inner"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-zinc-300">
-                Message
-              </label>
-              <textarea 
-                id="message"
-                placeholder="Type your message here"
-                rows={5}
-                className="w-full bg-[#18181b] border border-zinc-800/80 rounded-xl px-4 py-3.5 text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all resize-none sm:text-sm shadow-inner"
-              />
-            </div>
-
-            <button 
-              type="button" 
-              className="bg-[#27272a] hover:bg-[#3f3f46] text-zinc-100 font-medium px-6 py-2.5 rounded-lg text-sm transition-colors border border-zinc-700 shadow-sm"
-            >
-              Submit
-            </button>
-          </form>
+          <ContactForm />
         </div>
 
       </div>

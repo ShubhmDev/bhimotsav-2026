@@ -10,30 +10,18 @@ interface Member {
 }
 
 const members: Member[] = [
-  { name: 'Raviraj Sarvade', role: 'President', imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Sumit Talwade', role: 'Vice President', imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Ganesh Ingole', role: 'Treasurer', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Tanish Sidam', role: 'Treasurer', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Emma Brocklehurst', role: 'Head of Real Estate Finance', imageUrl: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Jack Tooley', role: 'Investment Director', imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'James Mitchell', role: 'Group Finance Director', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Joe Jack Williams', role: 'Head of Regenerative Strategy', imageUrl: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'John Holley', role: 'Investment Director', imageUrl: 'https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Josh Shapland', role: 'Group Finance Accountant', imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Julian Stocks', role: 'Senior Advisor', imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Kate Aspbury', role: 'Real Estate Analyst', imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Amber Hawkes', role: 'Marketing Director', imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Amber Wren', role: 'Associate Development Manager', imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Andrea Tanzi', role: 'Investment Analyst', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Christian Riley', role: 'Development Manager', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Emma Brocklehurst', role: 'Head of Real Estate Finance', imageUrl: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Jack Tooley', role: 'Investment Director', imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'James Mitchell', role: 'Group Finance Director', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Joe Jack Williams', role: 'Head of Regenerative Strategy', imageUrl: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'John Holley', role: 'Investment Director', imageUrl: 'https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Josh Shapland', role: 'Group Finance Accountant', imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Julian Stocks', role: 'Senior Advisor', imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&h=200&auto=format&fit=crop' },
-  { name: 'Kate Aspbury', role: 'Real Estate Analyst', imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&h=200&auto=format&fit=crop' },
+  { name: 'Raviraj Sarvade', role: 'President', imageUrl: '/images/committee/raviraj-sarvade.jpeg' },
+  { name: 'Sumit Talwade', role: 'Vice President', imageUrl: '/images/committee/sumit-talwade.jpeg' },
+  { name: 'Shubham Pote', role: 'Secretary', imageUrl: '/images/committee/shubham-pote.jpeg' },
+  { name: 'Yuraj Gaikwad', role: 'Secretary', imageUrl: '/images/committee/yuraj-gaikwad.jpeg' },
+  { name: 'Tanish Sidam', role: 'Treasurer', imageUrl: '/images/committee/tanish-sidam.jpeg' },
+  { name: 'Ganesh Ingole', role: 'Treasurer', imageUrl: '/images/committee/ganesh-ingole.jpeg' },
+  { name: 'Mithun Ganachari', role: 'Joint Secretary', imageUrl: '/images/committee/mithun-ganachari.jpeg' },
+  { name: 'Yash Bhalerao', role: 'Advisor', imageUrl: '/images/committee/yash-bhalerao.jpeg' },
+  { name: 'Adesh Jawale', role: 'Advisor', imageUrl: '/images/committee/adesh-jawale.jpeg' },
+  { name: 'Yash Sawarkar', role: 'Cultural Committee Head', imageUrl: '/images/committee/yash-sawarkar.jpeg' },
+  { name: 'Suraj Tayde', role: 'Social Media Head', imageUrl: '/images/committee/suraj-tayde.jpg' },
+  { name: 'Onkar Satpute', role: 'Technical Team', imageUrl: '/images/committee/onkar-satpute.jpeg' },
 ];
 
 export default function CommitteeMembers() {
@@ -57,7 +45,7 @@ export default function CommitteeMembers() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {members.map((member, index) => (
-            <div 
+            <div
               key={index}
               className={`
                 group relative flex items-center gap-6 p-6 bg-[#0a0a0a] border border-white/5 
@@ -67,9 +55,9 @@ export default function CommitteeMembers() {
             >
               {/* Image Section */}
               <div className="relative w-24 h-24 flex-shrink-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-500">
-                <img 
-                  src={member.imageUrl} 
-                  alt={member.name} 
+                <img
+                  src={member.imageUrl}
+                  alt={member.name}
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
@@ -96,7 +84,7 @@ export default function CommitteeMembers() {
         {/* Mobile "See More" Button */}
         {!showAll && members.length > 8 && (
           <div className="mt-12 flex justify-center md:hidden">
-            <button 
+            <button
               onClick={() => setShowAll(true)}
               className="group flex items-center gap-2 text-accent-blue border border-accent-blue/30 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-accent-blue hover:text-white transition-all bg-[#0a0a0a]"
             >
@@ -109,7 +97,7 @@ export default function CommitteeMembers() {
         {/* Mobile "See Less" Button (Optional, but good for UX) */}
         {showAll && (
           <div className="mt-12 flex justify-center md:hidden">
-            <button 
+            <button
               onClick={() => setShowAll(false)}
               className="group flex items-center gap-2 text-accent-blue border border-accent-blue/30 px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-accent-blue hover:text-white transition-all bg-[#0a0a0a]"
             >

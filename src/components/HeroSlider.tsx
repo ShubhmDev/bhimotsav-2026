@@ -75,9 +75,8 @@ export default function HeroSlider() {
         {slides.map((slide, index) => (
           <div
             key={slide.title}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === activeIndex ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ${index === activeIndex ? 'opacity-100' : 'opacity-0'
+              }`}
           >
             <Image
               src={slide.imageUrl}
@@ -127,7 +126,7 @@ export default function HeroSlider() {
         <button
           type="button"
           onClick={goPrev}
-          className="pointer-events-auto grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:scale-105 hover:bg-black/50"
+          className="pointer-events-auto hidden md:grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:scale-105 hover:bg-black/50"
           aria-label="Previous slide"
         >
           <ChevronLeft size={24} />
@@ -136,7 +135,7 @@ export default function HeroSlider() {
         <button
           type="button"
           onClick={goNext}
-          className="pointer-events-auto grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:scale-105 hover:bg-black/50"
+          className="pointer-events-auto hidden md:grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:scale-105 hover:bg-black/50"
           aria-label="Next slide"
         >
           <ChevronRight size={24} />
@@ -150,11 +149,10 @@ export default function HeroSlider() {
             type="button"
             aria-label={`Go to ${slide.era} slide`}
             onClick={() => setActiveIndex(index)}
-            className={`h-2.5 rounded-full transition-all ${
-              index === activeIndex
+            className={`h-2.5 rounded-full transition-all ${index === activeIndex
                 ? 'w-10 bg-accent-blue'
                 : 'w-2.5 bg-white/50 hover:bg-white/70'
-            }`}
+              }`}
           />
         ))}
       </div>

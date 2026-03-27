@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { registerEvent } from '@/app/actions'
-import { CreditCard, CheckCircle, Plus, Trash2 } from 'lucide-react'
+import { CheckCircle, Plus, Trash2 } from 'lucide-react'
 
 export default function CheckoutForm({ 
   eventId, 
@@ -112,7 +112,7 @@ export default function CheckoutForm({
           <div className="pt-8 mt-8 border-t border-white/10 space-y-8">
             <div className="space-y-2">
                <h3 className="text-xl font-bold text-white tracking-tight">Team Registration</h3>
-               <p className="text-sm font-medium text-gray-400 tracking-wide">Awesome, you're registering a team! You will be assigned as the Team Captain. Let's get your squad set up.</p>
+               <p className="text-sm font-medium text-gray-400 tracking-wide">Awesome, you&apos;re registering a team! You will be assigned as the Team Captain. Let&apos;s get your squad set up.</p>
             </div>
 
             <div>
@@ -145,10 +145,12 @@ export default function CheckoutForm({
                         <input 
                           type="text" 
                           required 
+                          pattern="^[^0-9]+$"
+                          title="Name cannot contain numbers"
                           placeholder="e.g. Jane Doe" 
                           value={member.name}
                           onChange={(e) => updateMember(index, 'name', e.target.value)}
-                          className="block w-full bg-transparent border-b border-white/10 text-white focus:border-accent-blue pb-2 text-sm outline-none transition-all placeholder-gray-700" 
+                          className="block w-full bg-transparent border-b border-white/10 text-white focus:border-accent-blue pb-2 text-sm outline-none transition-all placeholder-gray-700 invalid:[&:not(:placeholder-shown)]:border-red-500 invalid:[&:not(:placeholder-shown)]:text-red-500" 
                         />
                       </div>
                     </div>

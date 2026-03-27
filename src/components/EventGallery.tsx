@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { X, Plus, Instagram, Twitter, PlayCircle } from 'lucide-react'
@@ -172,4 +172,3 @@ function GalleryCard({ item, onClick }: { item: GalleryItemData, onClick: () => 
     </div>
   );
 }
-
