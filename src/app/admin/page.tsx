@@ -2,7 +2,7 @@ import { firestoreDB } from '@/lib/firebase'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { Plus, Users, Trash2 } from 'lucide-react'
+import { Plus, Users, Trash2, Edit } from 'lucide-react'
 import { deleteEvent } from './actions'
 
 export default async function AdminDashboard() {
@@ -68,12 +68,17 @@ export default async function AdminDashboard() {
                   </Link>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  {/* .bind approach to pass args to action without inline function */}
-                  <form action={deleteEvent.bind(null, event.id)}>
-                    <button type="submit" className="text-gray-400 hover:text-red-600 transition p-2 rounded-full hover:bg-red-50" title="Delete Event">
-                       <Trash2 size={18} />
-                    </button>
-                  </form>
+                  <div className="flex justify-end gap-2">
+                    <Link href={`/admin/events/${event.id}/edit`} className="text-gray-400 hover:text-blue-600 transition p-2 rounded-full hover:bg-blue-50" title="Edit Event">
+                       <Edit size={18} />
+                    </Link>
+                    {/* .bind approach to pass args to action without inline function */}
+                    <form action={deleteEvent.bind(null, event.id)}>
+                      <button type="submit" className="text-gray-400 hover:text-red-600 transition p-2 rounded-full hover:bg-red-50" title="Delete Event">
+                         <Trash2 size={18} />
+                      </button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             ))}

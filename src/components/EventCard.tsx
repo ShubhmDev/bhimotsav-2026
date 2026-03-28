@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { MapPin } from 'lucide-react'
 
 export default function EventCard({ event, isRegistered }: { event: any, isRegistered: boolean }) {
   const eventDateObj = event.eventDate ? new Date(event.eventDate) : null
@@ -89,7 +90,14 @@ export default function EventCard({ event, isRegistered }: { event: any, isRegis
           {event.category} • {event.description}
         </p>
 
-        <p suppressHydrationWarning className="font-bold text-gray-900 text-sm mb-6">Starts {timeStr}</p>
+        <p suppressHydrationWarning className="font-bold text-gray-900 text-sm mb-2">Starts {timeStr}</p>
+
+        {event.venue && (
+          <div className="flex items-center gap-1 text-gray-600 text-xs mb-4">
+             <MapPin size={14} className="text-blue-500" />
+             <span className="font-medium">{event.venue}</span>
+          </div>
+        )}
 
         {/* <div className="bg-accent-blue text-gray-900 text-xs font-bold px-4 py-1.5 rounded-full mb-8">
            Entry Price: Free

@@ -38,6 +38,7 @@ export async function createEvent(formData: FormData) {
   const category = formData.get('category') as string
   const description = formData.get('description') as string
   const eventDate = formData.get('eventDate') as string
+  const venue = formData.get('venue') as string
   
   const isTeamEventStr = formData.get('isTeamEvent') as string
   const minTeamSizeStr = formData.get('minTeamSize') as string
@@ -56,6 +57,7 @@ export async function createEvent(formData: FormData) {
     eventName,
     category,
     description,
+    venue: venue || null,
     eventDate: new Date(eventDate).toISOString(),
     isTeamEvent,
     minTeamSize,
@@ -65,6 +67,48 @@ export async function createEvent(formData: FormData) {
   });
 
   revalidatePath('/admin')
+  revalidatePath('/events')
+  redirect('/admin')
+}
+
+export async function updateEvent(eventId: string, formData: FormData) {
+  // Validate admin
+  const cookieStore = await cookies()
+  if (!cookieStore.get('admin_token')) throw new Error('Unauthorized')
+
+  const eventName = formData.get('eventName') as string
+  const category = formData.get('category') as string
+  const description = formData.get('description') as string
+  const eventDate = formData.get('eventDate') as string
+  const venue = formData.get('venue') as string
+  
+  const isTeamEventStr = formData.get('isTeamEvent') as string
+  const minTeamSizeStr = formData.get('minTeamSize') as string
+  const maxTeamSizeStr = formData.get('maxTeamSize') as string
+  const imageUrl = formData.get('imageUrl') as string
+
+  if (!eventName || !category || !description || !eventDate) throw new Error('All fields required')
+  
+  const isTeamEvent = isTeamEventStr === 'on'
+  const minTeamSize = minTeamSizeStr ? parseInt(minTeamSizeStr, 10) : null
+  const maxTeamSize = maxTeamSizeStr ? parseInt(maxTeamSizeStr, 10) : null
+
+  await firestoreDB.collection('events').doc(eventId).update({
+    eventName,
+    category,
+    description,
+    venue: venue || null,
+    eventDate: new Date(eventDate).toISOString(),
+    isTeamEvent,
+    minTeamSize,
+    maxTeamSize,
+    imageUrl: imageUrl || null,
+    updatedAt: new Date().toISOString()
+  });
+
+  revalidatePath('/admin')
+  revalidatePath('/events')
+  revalidatePath(`/events/${eventId}`)
   redirect('/admin')
 }
 

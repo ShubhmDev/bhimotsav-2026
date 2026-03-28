@@ -38,6 +38,11 @@ export default async function NewEventPage() {
           </div>
 
           <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Venue</label>
+            <input type="text" name="venue" className="block w-full border border-gray-300 rounded-md p-2.5 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g. Campus Amphitheater" />
+          </div>
+
+          <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Image URL (Optional)</label>
             <input type="url" name="imageUrl" className="block w-full border border-gray-300 rounded-md p-2.5 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g. https://example.com/cricket.jpg" />
             <p className="mt-1 text-xs text-gray-500 italic">If left blank, a default image matching the event title or category will be used.</p>
