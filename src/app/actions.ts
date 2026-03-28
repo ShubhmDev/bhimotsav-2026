@@ -48,6 +48,8 @@ export async function identifyUser(formData: FormData) {
       maxAge: 60 * 60 * 24 * 365, // 1 year
       path: '/'
     })
+    
+    revalidatePath('/', 'layout')
   } catch (error) {
     console.error('Error identifying user:', error)
     throw new Error('Failed to create user profile')
@@ -89,6 +91,7 @@ export async function getCurrentUser() {
 export async function logout() {
   const cookieStore = await cookies()
   cookieStore.delete('user_token')
+  revalidatePath('/', 'layout')
   redirect('/')
 }
 

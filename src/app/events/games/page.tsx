@@ -2,6 +2,8 @@ import { firestoreDB } from '@/lib/firebase'
 import EventCard from '@/components/EventCard'
 import { getCurrentUser } from '@/app/actions'
 
+export const revalidate = 60
+
 export default async function GamesEventsPage() {
   const user = await getCurrentUser()
   let events: any[] = []

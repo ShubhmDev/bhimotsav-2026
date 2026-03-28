@@ -5,6 +5,9 @@ import EventGallery from '@/components/EventGallery'
 import CommitteeMembers from '@/components/CommitteeMembers'
 import { firestoreDB } from '@/lib/firebase'
 import { getCurrentUser } from '@/app/actions'
+import { revalidatePath } from 'next/cache'
+
+export const revalidate = 60
 
 export default async function Home() {
   const user = await getCurrentUser()
