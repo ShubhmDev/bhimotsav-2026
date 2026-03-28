@@ -66,8 +66,7 @@ export async function createEvent(formData: FormData) {
     createdAt: new Date().toISOString()
   });
 
-  revalidatePath('/admin')
-  revalidatePath('/events')
+  revalidatePath('/', 'layout')
   redirect('/admin')
 }
 
@@ -106,9 +105,7 @@ export async function updateEvent(eventId: string, formData: FormData) {
     updatedAt: new Date().toISOString()
   });
 
-  revalidatePath('/admin')
-  revalidatePath('/events')
-  revalidatePath(`/events/${eventId}`)
+  revalidatePath('/', 'layout')
   redirect('/admin')
 }
 
@@ -127,6 +124,5 @@ export async function deleteEvent(id: string) {
   batch.delete(firestoreDB.collection('events').doc(id));
   await batch.commit();
 
-  revalidatePath('/admin')
-  revalidatePath('/events')
+  revalidatePath('/', 'layout')
 }
