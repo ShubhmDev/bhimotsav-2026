@@ -28,25 +28,26 @@ export default function EventCard({ event, isRegistered }: { event: any, isRegis
     if (name.includes('carrom')) return 'https://cdn.pixabay.com/photo/2014/07/11/23/14/carrom-390835_1280.jpg?w=800&q=80';
     if (name.includes('chess')) return 'https://cdn.pixabay.com/photo/2015/12/07/10/40/strategy-1080528_1280.jpg?w=800&q=80';
     if (name.includes('badminton')) return 'https://images.unsplash.com/photo-1521537634581-0dced2fee2ef?w=800&q=80';
-    if (name.includes('volleyball')) return 'https://images.unsplash.com/photo-1612872086822-4424eba6e1f0?q=80&w=1000&auto=format&fit=crop';
+    if (name.includes('volleyball')) return 'https://cdn.pixabay.com/photo/2013/05/02/21/23/basketball-108622_1280.jpg?w=800&q=80';
     if (name.includes('esport')) return 'https://cdn.pixabay.com/photo/2020/01/04/11/15/game-play-4740277_1280.jpg?w=800&q=80';
     if (name.includes('marathon')) return 'https://cdn.pixabay.com/photo/2021/09/27/10/02/marathon-6660180_1280.jpg?w=800&q=80';
 
-    if (cat.includes('cultural') || name.includes('debate') || name.includes('music') || name.includes('musical') || name.includes('essay') || name.includes('quiz') || name.includes('funny') || name.includes('speech') || name.includes('Drama') || name.includes('program') || name.includes('chair')) {
-      if (name.includes('debate')) return 'https://images.unsplash.com/photo-1679833645645-e262e042f532?q=80&w=1082&auto=format&fit=crop';
+    if (cat.includes('cultural') || name.includes('debate') || name.includes('music') || name.includes('essay') || name.includes('quiz') || name.includes('funny') || name.includes('speech') || name.includes('drama')) {
+      if (name.includes('debate')) return 'https://images.unsplash.com/photo-1679833645645-e262e042f532?q=80&w=1082&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
       if (name.includes('fashion') || name.includes('ramp')) return 'https://cdn.pixabay.com/photo/2016/11/19/20/17/catwalk-1840941_1280.jpg?w=800&q=80';
-      if (name.includes('Drama') || name.includes('play') || name.includes('Drama')) return 'https://images.unsplash.com/photo-1760604359369-45675611f750?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800&q=80';
+      if (name.includes('drama') || name.includes('play') || name.includes('drama')) return 'https://cdn.pixabay.com/photo/2016/11/08/05/40/actor-1807557_1280.jpg?w=800&q=80';
       if (name.includes('quiz')) return 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&q=80';
-      if (name.includes('essay')) return 'https://images.unsplash.com/photo-1630032866155-f87ec4d047bd?q=80&w=1170&auto=format&fit=crop';
+      if (name.includes('essay')) return 'https://images.unsplash.com/photo-1630032866155-f87ec4d047bd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800&q=80';
       if (name.includes('funny')) return 'https://images.unsplash.com/photo-1473691955023-da1c49c95c78?w=800&q=80';
-      if (name.includes('speech')) return 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=1000';
-      if (name.includes('chair')) return 'https://images.unsplash.com/photo-1549451371-64aa98a6f660?q=80&w=1000&auto=format&fit=crop';
+      if (name.includes('speech')) return 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=1920&q=75';
+      if (name.includes('drama')) return 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80&w=1920&q=75?w=800&q=80';
       return 'https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&q=80';
     }
 
-    if (cat.includes('educational') || name.includes('project') || name.includes('12-hour') || name.includes('12 hour') || name.includes('study') || name.includes('tech')) {
+    if (cat.includes('educational') || name.includes('project') || name.includes('12-Hour') || name.includes('Study') || name.includes('tech')) {
       if (name.includes('project') || name.includes('hackathon') || name.includes('program')) return 'https://cdn.pixabay.com/photo/2024/01/10/16/20/woman-8499928_1280.jpg?w=800&q=80';
-      if (name.includes('study') || name.includes('12-hour') || name.includes('12 hour') || name.includes('lecture')) return 'https://cdn.pixabay.com/photo/2013/04/19/01/15/university-105709_1280.jpg?w=800&q=80';
+
+      if (name.includes('12-Hourp') || name.includes('Study') || name.includes('lecture')) return 'https://cdn.pixabay.com/photo/2013/04/19/01/15/university-105709_1280.jpg?w=800&q=80';
       return 'https://cdn.pixabay.com/photo/2013/04/19/01/15/university-105709_1280.jpg?w=800&q=80';
     }
 
