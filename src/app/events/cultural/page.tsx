@@ -57,11 +57,12 @@ export default async function CulturalEventsPage() {
       {/* Events Grid */}
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-24 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event: any) => (
+          {events.map((event: any, index: number) => (
             <EventCard 
               key={event.id} 
               event={event} 
               isRegistered={registeredEventIds.has(event.id)} 
+              priority={index < 3}
             />
           ))}
         </div>

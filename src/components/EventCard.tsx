@@ -5,7 +5,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MapPin } from 'lucide-react'
 
-export default function EventCard({ event, isRegistered }: { event: any, isRegistered: boolean }) {
+export default function EventCard({ 
+  event, 
+  isRegistered, 
+  priority = false 
+}: { 
+  event: any, 
+  isRegistered: boolean,
+  priority?: boolean
+}) {
   const eventDateObj = event.eventDate ? new Date(event.eventDate) : null
   const isValidDate = eventDateObj && !isNaN(eventDateObj.getTime())
 
@@ -77,6 +85,8 @@ export default function EventCard({ event, isRegistered }: { event: any, isRegis
           src={imgSrc}
           alt={event.eventName}
           fill
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 hover:scale-105"
           onError={() => setImgSrc(`https://picsum.photos/seed/${event.id}/800/600`)}
         />

@@ -81,11 +81,12 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {events.map(event => (
+            {events.map((event, index) => (
               <EventCard 
                 key={event.id} 
                 event={event} 
-                isRegistered={userRegistrations.includes(event.id)} 
+                isRegistered={userRegistrations.includes(event.id)}
+                priority={index < 3}
               />
             ))}
           </div>
