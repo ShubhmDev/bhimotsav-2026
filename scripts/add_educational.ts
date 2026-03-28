@@ -47,19 +47,21 @@ function istToUtc(day: number, timeStr: string) {
 
 const educationalEvents = [
   {
-    eventName: 'Project Competition',
+    eventName: 'Project competition',
     category: 'Educational',
-    eventDate: istToUtc(23, '4:30 PM'),
+    eventDate: istToUtc(9, '3:00 PM'),
     description: 'Showcase your innovation and technical projects.',
+    venue: 'New building',
     isTeamEvent: true,
     minTeamSize: 1,
     maxTeamSize: 4,
   },
   {
-    eventName: '12-Hour Study Challenge',
+    eventName: '12 hours study',
     category: 'Educational',
-    eventDate: istToUtc(24, '1:30 PM'),
+    eventDate: istToUtc(10, '8:00 AM'),
     description: 'A test of endurance and focus - can you study for 12 hours?',
+    venue: 'To Be Decided',
     isTeamEvent: false,
     minTeamSize: 1,
     maxTeamSize: 1,
